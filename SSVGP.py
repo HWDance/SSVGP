@@ -20,6 +20,9 @@ from scipy.stats import norm
 
 class kernel_funcs:
     
+    def __init__():
+        return
+    
     # Gaussian kernel
     def gaussian(d,s):
         return s*np.exp(-0.5*d**2)
@@ -70,6 +73,9 @@ class kernel_funcs:
             return (Ztest.T @ Z)*s**2
 
 class model_funcs:
+    
+    def __init__():
+        return
 
     # Gradient of marginal likelihood trace term interior (Kinvy @ Kinvy.T - Kinv)
     def grad_logL_A(y,Ktild):
@@ -85,12 +91,15 @@ class model_funcs:
     
 class draw_simulation:
     
-    def toy_example(n=300,p=100,q=5,noise=0.05):
+    def __init__():
+        return
+    
+    def toy_example(n=300,p=100,q=5,noise_ratio=0.25):
         a = np.linspace(1,0.5,q)
-        X = np.random.multivariate_normal(np.zeros(p), np.eye(p), n+100)
+        X = np.random.multivariate_normal(np.zeros(p), np.eye(p), n)
         f = np.sin(a*X[:,:q]).sum(1)
-        noise_var = noise*np.var(f)
-        Y = (f + np.random.normal(0,noise_var**0.5,n+100)).reshape(n+100,1)
+        noise_var = noise_ratio**2*np.var(f)
+        Y = (f + np.random.normal(0,noise_var**0.5,n)).reshape(n,1)
         
         return Y,X,f
 
@@ -198,6 +207,9 @@ class draw_simulation:
     
 class train:
     
+    def __init__():
+        return
+    
     def get_NN(y,X,xtest,l,s,kern,NN,fraction):
         
         n = len(X)
@@ -283,8 +295,8 @@ class train:
         return step_size, sum_sq_grads, sum_grads
 
 
-    def kernel_param_optimise(y,X,l0=0.1,s0=1,sig0=1,v=1e+4,c=1e-8,lmbda=1,reg=1e-3,kern=kernel_funcs.gaussian,grad_kern=kernel_funcs.grad_gaussian,minibatch=256,sampling_strat="nn",nn_fraction=1,
-            optimisation="adam",learn_rate=0.01,beta=0.9,beta2=0.999,eps=1e-8,optimisation_sums=[],maxiter=200,print_=False,store_ls=False, L=[], iters=0,store_elbo=False):
+    def kernel_param_optimise(y,X,l0=[],s0=1,sig0=1,v=1e+4,c=1e-8,lmbda=1,reg=1e-3,kern=kernel_funcs.gaussian,grad_kern=kernel_funcs.grad_gaussian,minibatch=[],sampling_strat="nn",nn_fraction=1,
+            optimisation="adam",learn_rate=0.05,beta=0.9,beta2=0.999,eps=1e-8,optimisation_sums=[],maxiter=200,print_=False,store_ls=False, L=[], iters=0,store_elbo=False):
         """
         
         Function to optimise q(\theta) and (s,sigma) in a-CAVI
@@ -332,7 +344,13 @@ class train:
         n,p = np.shape(X)
     
         # Initialising parameters
+        if l0 == []:
+            l0 = 1/np.sqrt(p)
         l=np.ones(p)*l0
+        if minibatch == []:
+            minibatch = min(int(n/4),256)
+        if minibatch > n:
+            minibatch = n
         lmbda=np.ones(p)*lmbda
         s=s0
         sigma=sig0
@@ -408,9 +426,9 @@ class train:
         return elogpi, elog1_pi, a, b
     
     # a-CAVI algorithm
-    def aCAVI(y,X,l0=0.1,s0=1,sig0=1,lmbda0=1,logpi0=0,log1_pi0=0,v=1e+4,c=1e-8,a=1e-3,b=1e-3,reg=1e-2,aCAVI_iter=5,
-                            init_grad_step=200,grad_step=100,minibatch=256,sampling_strat = "nn", nn_fraction = 1,
-                            optimisation="adam",learn_rate=0.01,Beta=0.9,Beta2=0.999,eps=1e-8,print_gradsteps=False,print_aCAVI=False,
+    def aCAVI(y,X,l0=0.1,s0=1,sig0=1,lmbda0=1,logpi0=0,log1_pi0=0,v=1e+4,c=1e-8,a=1e-3,b=1e-3,reg=1e-2,aCAVI_iter=10,
+                            init_grad_step=200,grad_step=100,minibatch=[],sampling_strat = "nn", nn_fraction = 1,
+                            optimisation="adam",learn_rate=0.05,Beta=0.9,Beta2=0.999,eps=1e-8,print_gradsteps=False,print_aCAVI=False,
                             timer=False,store_elbo=False,kern=kernel_funcs.gaussian,grad_kern = kernel_funcs.grad_gaussian, store_ls = False, 
                              seed = [],prune = True, final_prune = False, prune_PIP=0.5, learn_scale = False, optimisation_sums = []):
         """
@@ -482,6 +500,8 @@ class train:
         sig = sig0*np.var(y)**0.5
             
         # Filling in missing parameter settings
+        if minibatch == []:
+            minibatch = min(int(n/4),256)
         if n<minibatch:
             minibatch = n
         if seed:
@@ -632,6 +652,9 @@ class train:
         return Results,Selections
                 
 class evaluation:
+    
+    def __init__():
+        return
                 
     def Burkner_LOOLPD(y,X,results,kern,reg,regvar,post_var):
 
@@ -664,7 +687,7 @@ class evaluation:
             
         return loolpd,Ymean,Yvar    
     
-    def model(y,X,Results,reg=1e-2,kern=kernel_funcs.gaussian,NN=[],fraction=1,post_var=True, print_=False,use_tree=False,leaf_size=100,seed=0, perturb_sd = 0,reg_var=1):
+    def model(y,X,Results,reg=1e-2,kern=kernel_funcs.gaussian,post_var=True, print_=False,use_tree=False,leaf_size=100,seed=0, perturb_sd = 0,reg_var=1):
         
         """
         
@@ -677,15 +700,13 @@ class evaluation:
         Results : list of outputs from aCAVI()
         reg : nugget regularisation
         kern : kernel function
-        NN : nearest neighbour truncation
-        fraction : % of data to search over for NNs
         post_var : True = get variances (else set variances to 1)
         print_ : print LOO-LPD per model
         use_tree : True = use kd or ball tree (kd used if dim(active X's) < 100)
         leaf_size : size of tree leafs
         seed : random seed set
         perturb_sd : peturbation sd for inverse lengthscales for robustness to poor local optima
-        reg_var : regularisation for posterior variances for increased robustness to outliers
+        reg_var : regularisation for posterior variances for robustness to outliers
         
         Returns
         -------
@@ -705,9 +726,6 @@ class evaluation:
         Ymean = np.zeros((n,len(Results)))
         Yvar = np.zeros((n,len(Results)))
         Kalman = np.zeros((n,len(Results)))
-        if not NN:
-            NN = n-1
-        fraction = np.min((np.max((fraction, NN/n)),1))
         
         # Getting log predictives
         for j in range(len(Results)):
@@ -733,49 +751,8 @@ class evaluation:
                 sig = results[2]             
                 lpred = lselect*1
 
-                # NN or no NN
-                if NN<n:
-                    if use_tree:
-                        if p<100:
-                            tree = neighbors.KDTree(Xsearch,leaf_size)
-                        else:
-                            tree = neighbors.BallTree(Xsearch,leaf_size)
-
-                    # Looping through datapoints
-                    ypostmean,ypostvar = np.zeros(n),np.ones(n)*reg_var
-                    for i in range(n):
-
-                        if perturb_sd>0:
-                            lpred = lselect+np.random.normal(0,perturb_sd,q)
-
-                        Xsearchi = Xsearch[i]
-                        Xi = Xselect[i][None,:]
-                        yi = y[i]
-
-                        # Getting NN set using selected dimensions
-                    
-                        if use_tree:
-                            nn = tree.query(Xsearchi[None,:], k=NN+1)[1][0][1:]
-                        else:
-                            nn = train.get_NN(y,Xsearch,Xsearchi, 1, s, kern, NN+1, fraction=fraction)[1][1:]
-                        
-                        # Making predictions 
-                        K=kernel_funcs.ARD(l=lpred,s=s,X=Xselect[nn],kern=kern)
-                        Ktest=kernel_funcs.ARDtest(l=lpred,s=s,X=Xselect[nn],Xtest=Xi,kern=kern)
-                        Ktild=K+np.eye(len(K))*(reg+reg_var)#+sig**2) 
-                        KtestKtild = np.linalg.solve(Ktild, Ktest.T).T
-                        ypostmean[i] += KtestKtild @ y[nn]
-                        if post_var:
-                            Ktesttest=kernel_funcs.ARD(l=lpred,s=s,X=Xi,kern=kern)
-                            ypostvar[i] += Ktesttest -  KtestKtild @ Ktest.T
-
-                        logpredictives[j] +=  -0.5*np.log(ypostvar[i])-0.5*(ypostmean[i]-yi)**2/ypostvar[i]
-                    
-                    logpredictives[j] += -n/2*np.log(2*np.pi)
-                    
-                else:
-                    logpred,ypostmean,ypostvar = evaluation.Burkner_LOOLPD(y,X,results,kernel_funcs.gaussian,reg,reg_var,post_var)
-                    logpredictives[j] += logpred
+                logpred,ypostmean,ypostvar = evaluation.Burkner_LOOLPD(y,X,results,kernel_funcs.gaussian,reg,reg_var,post_var)
+                logpredictives[j] += logpred
             else:
                 logpredictives[j] = np.min(logpredictives)-1000
                 
@@ -793,9 +770,12 @@ class evaluation:
             PIP += Results[j][3]*weights[j]
             Mu += np.abs(Results[j][0])*weights[j]
 
-        return logpredictives,PIP,Mu,weights,Ymean,Yvar
+        return logpredictives,PIP,Mu,weights
                 
 class test:
+    
+    def __init__():
+        return
         
     def posterior_predictive(y,X,Xtest,l,s,sig,reg=0.01,kern=kernel_funcs.gaussian, post_var=False, latents = False):
                 
@@ -872,7 +852,7 @@ class test:
 
         return fpost_mean, fpost_var, ypost_mean, ypost_var
     
-    def model(y,X,Xtest,testing_algorithm, Results,weights, MC_samples=100):
+    def model(y,X,Xtest,testing_algorithm, Results,weights, MC_samples=1000):
         
         n,m = len(X),len(Xtest)
         y = y.reshape(n,1)
