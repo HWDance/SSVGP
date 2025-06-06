@@ -34,7 +34,7 @@ Key features:
 2. **Install required dependencies:**
    ```python
    pip install numpy scipy matplotlib jupyter
-
+   ```
 
 ## Getting Started
 To familiarize yourself with the SSVGP implementation:
