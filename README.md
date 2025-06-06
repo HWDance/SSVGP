@@ -59,6 +59,21 @@ import SSVGP
 ```
 and follow the workflow in `SSVGP demo.ipynb`.
 
+## Example: Variable Selection with SSVGP
+
+![Comparison of inverse lengthscales vs PIPs](SSVGPMF_PIP_vs_MLII.png)
+
+*Left: ML-II GP inverse lengthscales θ. Right: SSVGP+MFG posterior inclusion probabilities λ. Vertical dashed line marks the ground truth sparsity.*
+
+---
+
+## Example: Predictive Performance
+
+![Predicted surfaces from SGP, SVGP, SSVGP, and ground truth](E2_prediction_surfaces_2x2.png)
+
+*Top left: Sparse Variational GP (SGP). Top right: Stochastic Variational GP (SVGP).  
+Bottom left: SSVGP (m=256). Bottom right: True test surface.*
+
 ## Citation
 If you use this code or the SSVGP method in your research, please cite the following paper:
 
