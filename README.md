@@ -54,7 +54,7 @@ This notebook demonstrates the application of SSVGP on a synthetic dataset, show
 ## Using SSVGP in Your Projects
 To apply SSVGP to your own datasets, import the SSVGP module:
 
-```bash
+```python
 from SSVGP import SSVGP
 
 and follow the workflow in `SSVGP demo.ipynb`.
