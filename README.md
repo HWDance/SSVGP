@@ -69,7 +69,7 @@ and follow the workflow in `SSVGP demo.ipynb`.
 
 ## Example: Predictive Performance
 
-![Predicted surfaces from SGP, SVGP, SSVGP, and ground truth](E2_prediction_surfaces_.png)
+![Predicted surfaces from SGP, SVGP, SSVGP, and ground truth](E2_prediction_surface_.png)
 
 *Top left: Sparse Variational GP (SGP). Top right: Stochastic Variational GP (SVGP).  
 Bottom left: SSVGP (m=256). Bottom right: True test surface.*
