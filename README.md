@@ -80,6 +80,7 @@ Bottom left: SSVGP (m=256). Bottom right: True test surface.*
 ## Citation
 If you use this code or the SSVGP method in your research, please cite the following paper:
 
+```bibtex
 @inproceedings{dance2022fast,
   title={Fast and Scalable Spike and Slab Variable Selection in High-Dimensional Gaussian Processes},
   author={Dance, Hugh W and Paige, Brooks},
@@ -87,6 +88,7 @@ If you use this code or the SSVGP method in your research, please cite the follo
   year={2022},
   url={https://arxiv.org/abs/2111.04558}
 }
+```
 
 ## License
 This project is licensed under the Apache 2.0 License. See the LICENSE file for details.
