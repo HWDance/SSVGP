@@ -60,16 +60,12 @@ import SSVGP
 and follow the workflow in `SSVGP demo.ipynb`.
 
 ## Example: Variable Selection with SSVGP
-
+$N=300$ points generated from $Y_i = \sum_i^5 a_i sin(b_i X_i) + \xi , \xi \sim N(0,1)$, We observe dataset $(Z,Y)$, where $Z = (W,X)$, $W \in \mathbb R^{98}$ and try to learn relevant predictors. 
 <p align="center">
   <img src="ML_II_q=5_d=100_n=300_.png" width="45%" />
   <img src="SSVGP_q=5_d=100_n=300_.png" width="45%" />
 </p>
-
-<p align="center">
-  <em>Left: ML-II GP inverse lengthscales (θ). Right: SSVGP+MFG PIPs (λ).</em>
-</p>
-*Left: ML-II GP inverse lengthscales θ. Right: SSVGP+MFG posterior inclusion probabilities λ. Vertical dashed line marks the ground truth sparsity.*
+*Left: ML-II GP inverse lengthscales θ. Right: SSVGP posterior inclusion probabilities λ. Vertical dashed line marks the ground truth sparsity.*
 
 ---
 
