@@ -65,7 +65,7 @@ $N=300$ points generated from $Y_i = \sum_i^5 a_i sin(b_i X_i) + \xi , \xi \sim 
   <img src="ML_II_q=5_d=100_n=300_.png" width="45%" />
   <img src="SSVGP_q=5_d=100_n=300_.png" width="45%" />
 </p>
-*Left: ML-II GP inverse lengthscales θ. Right: SSVGP posterior inclusion probabilities λ. Vertical dashed line marks the ground truth sparsity.*
+*Left: Inverse lengthscales θ of standard GP with automatic-relevance-determination kernel trained via maximum Marginal Likelihood. Right: SSVGP posterior inclusion probabilities λ. Vertical dashed line marks the ground truth sparsity.*
 
 ---
 
