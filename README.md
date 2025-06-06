@@ -89,7 +89,7 @@ If you use this code or the SSVGP method in your research, please cite the follo
 ## License
 This project is licensed under the Apache 2.0 License. See the LICENSE file for details.
 
-Contact
+## Contact
 For questions or feedback, please contact:
 
 Hugh W. Dance
