@@ -52,9 +52,7 @@ SSVGP demo.ipynb. This notebook demonstrates the application of SSVGP on a synth
 ## Using SSVGP in Your Projects
 To apply SSVGP to your own datasets, import the SSVGP module:
 
-python
-Copy
-Edit
+```python
 from SSVGP import SSVGP
 
 and follow the workflow in SSVGP demo.ipynb.
@@ -62,17 +60,15 @@ and follow the workflow in SSVGP demo.ipynb.
 ## Citation
 If you use this code or the SSVGP method in your research, please cite the following paper:
 
-bibtex
-Copy
-Edit
 @inproceedings{dance2022fast,
   title={Fast and Scalable Spike and Slab Variable Selection in High-Dimensional Gaussian Processes},
-  author={Dance, Hugh and Paige, Brooks},
+  author={Dance, Hugh W and Paige, Brooks},
   booktitle={Proceedings of the 25th International Conference on Artificial Intelligence and Statistics},
   year={2022},
   url={https://arxiv.org/abs/2111.04558}
 }
-License
+
+## License
 This project is licensed under the Apache 2.0 License. See the LICENSE file for details.
 
 Contact
