@@ -54,7 +54,7 @@ To apply SSVGP to your own datasets, import the SSVGP module:
 
 ```python
 from SSVGP import SSVGP
-
+```
 and follow the workflow in SSVGP demo.ipynb.
 
 ## Citation
