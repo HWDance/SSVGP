@@ -96,8 +96,8 @@ This project is licensed under the Apache 2.0 License. See the LICENSE file for 
 ## Contact
 For questions or feedback, please contact:
 
-Hugh W. Dance
-PhD Researcher, Machine Learning
+Hugh W. Dance,
+PhD Researcher, Machine Learning,
 Gatsby Computational Neuroscience Unit, UCL
 uctphwd@ucl.ac.uk
 
