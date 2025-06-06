@@ -52,10 +52,10 @@ To familiarize yourself with the SSVGP implementation:
 This notebook demonstrates the application of SSVGP on a synthetic dataset, showcasing its variable selection capabilities.
 
 ## Using SSVGP in Your Projects
-To apply SSVGP to your own datasets, import the SSVGP module:
+To apply SSVGP to your own datasets, import the SSVGP module and requirements:
 
 ```python
-from SSVGP import SSVGP
+import SSVGP
 ```
 and follow the workflow in `SSVGP demo.ipynb`.
 
