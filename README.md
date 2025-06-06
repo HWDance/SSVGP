@@ -32,7 +32,7 @@ Key features:
    cd SSVGP
 
 2. **Install required dependencies:**
-
+   ```python
    pip install numpy scipy matplotlib jupyter
 
 
@@ -45,16 +45,18 @@ To familiarize yourself with the SSVGP implementation:
    ```bash
    jupyter notebook
 
-2. **Run the Demo*
+2. **Run the Demo**
+   ```bash
+   SSVGP demo.ipynb.
 
-SSVGP demo.ipynb. This notebook demonstrates the application of SSVGP on a synthetic dataset, showcasing its variable selection capabilities.
+This notebook demonstrates the application of SSVGP on a synthetic dataset, showcasing its variable selection capabilities.
 
 ## Using SSVGP in Your Projects
 To apply SSVGP to your own datasets, import the SSVGP module:
 
 ```python
 from SSVGP import SSVGP
-```
+
 and follow the workflow in SSVGP demo.ipynb.
 
 ## Citation
