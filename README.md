@@ -61,8 +61,14 @@ and follow the workflow in `SSVGP demo.ipynb`.
 
 ## Example: Variable Selection with SSVGP
 
-![Comparison of inverse lengthscales vs PIPs](SSVGPMF_PIP_vs_MLII.png)
+<p align="center">
+  <img src="ML_II_q=5_d=100_n=300_.png" width="45%" />
+  <img src="SSVGP_q=5_d=100_n=300_.png" width="45%" />
+</p>
 
+<p align="center">
+  <em>Left: ML-II GP inverse lengthscales (θ). Right: SSVGP+MFG PIPs (λ).</em>
+</p>
 *Left: ML-II GP inverse lengthscales θ. Right: SSVGP+MFG posterior inclusion probabilities λ. Vertical dashed line marks the ground truth sparsity.*
 
 ---
