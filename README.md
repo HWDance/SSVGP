@@ -67,7 +67,7 @@ and follow the workflow in `SSVGP demo.ipynb`.
 
 ---
 
-## Example: Predictive Performance
+## Example: Predictive Performance in Sparse, High-Dimensional Regression
 
 $N=10^4$ points generated from $Y = f(X) + \xi$, $\xi \sim N(0,1)$ and $X \in \mathbb R^2$. We observe dataset $(Z,Y)$, where $Z = (W,X)$, $W \in \mathbb R^{9998}$ and try to learn prediction surface $(w,x) \mapsto f(x)$. 
 ![Predicted surfaces from SGP, SVGP, SSVGP, and ground truth](E2_prediction_surface_.png)
