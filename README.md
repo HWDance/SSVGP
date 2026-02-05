@@ -31,9 +31,10 @@ Key features:
    git clone https://github.com/HWDance/SSVGP.git
    cd SSVGP
 
-2. **Install required dependencies:**
+2. **Install environment + activate:**
    ```python
-   pip install numpy scipy matplotlib jupyter
+   conda env create -f environment.yaml
+   conda activate ssvgp
    ```
 
 ## Getting Started
