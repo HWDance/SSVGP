@@ -2,15 +2,17 @@ name: ssvgp
 channels:
   - conda-forge
 dependencies:
-  - python=3.9
+  - python=3.11
 
-  # scientific stack (circa 2022)
-  - numpy=1.23.*
-  - scipy=1.9.*
-  - matplotlib=3.5.*
+  # core numerical stack
+  - numpy=2.3.*
+  - scipy=1.16.*
+  - matplotlib=3.10.*
+  - scikit-learn=1.7.*
 
-  # classic notebook stack (pre-Jupyter 7 refactor)
-  - notebook=6.4.*
-  - jupyterlab=3.4.*
+  # notebook stack
+  - notebook=7.4.*
+  - jupyterlab=4.4.*
+  - ipython=9.*
 
   - pip
