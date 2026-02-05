@@ -1,0 +1,16 @@
+name: ssvgp
+channels:
+  - conda-forge
+dependencies:
+  - python=3.9
+
+  # scientific stack (circa 2022)
+  - numpy=1.23.*
+  - scipy=1.9.*
+  - matplotlib=3.5.*
+
+  # classic notebook stack (pre-Jupyter 7 refactor)
+  - notebook=6.4.*
+  - jupyterlab=3.4.*
+
+  - pip
